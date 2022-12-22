@@ -38,14 +38,33 @@ class FlightMap:
     def flights(self) -> list[Flight]:
         return self.flights
     
+   
     def airport_find(self, airport_code: str) -> Airport:
         for airport in self.airports:
-            if self.code == airport_code[0]:
-                next(airport_code)
+            if airport.code == airport_code:
                 return airport
         return None
+    
+    def flight_exist(self, src_airport_code: str, dst_airport_code: str) -> bool:
+        flights = [f for f in self.flights if f.src_code == src_airport_code and f.dst_code == dst_airport_code]
+        return bool(flights)
+    
+    def flights_where(self, airport_code: str) -> list[Flight]:
+        flights = [f for f in self.flights if f.src_code == airport_code or f.dst_code == airport_code]
+        return flights
+
+    def airports_from(self, airport_code: str) -> list[Airport]:
+        flights = self.flights_where(airport_code)
+        airports = [self.airport_find(f.dst_code) for f in flights]
+        return airports
 
 flight_map = FlightMap()
 flight_map.import_airports(csv_file='aeroports.csv')
 flight_map.import_flights(csv_file='flights.csv')
-print(flight_map.airports)
+airport = flight_map.airport_find
+flights = flight_map.flights_where
+airports = flight_map.airports_from
+# print(flight_map.airports)
+print(airport)
+print(flights)
+print(airports)
