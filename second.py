@@ -57,14 +57,3 @@ class FlightMap:
         flights = self.flights_where(airport_code)
         airports = [self.airport_find(f.dst_code) for f in flights]
         return airports
-
-flight_map = FlightMap()
-flight_map.import_airports(csv_file='aeroports.csv')
-flight_map.import_flights(csv_file='flights.csv')
-airport = flight_map.airport_find
-flights = flight_map.flights_where
-airports = flight_map.airports_from
-# print(flight_map.airports)
-print(airport)
-print(flights)
-print(airports)
