@@ -1,17 +1,7 @@
 import csv
+from airport import Airport
+from flight import Flight
 
-class Airport:
-    def __init__(self, name: str, code: str, lat: float, long: float):
-        self.name = name
-        self.code = code
-        self.lat = lat
-        self.long = long
-
-class Flight:
-    def __init__(self, src_code: str, dst_code: str, duration: float):
-        self.src_code = src_code
-        self.dst_code = dst_code
-        self.duration = duration
 
 class FlightMap:
     def __init__(self):
