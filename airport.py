@@ -4,3 +4,4 @@ class Airport:
         self.code = code
         self.lat = lat
         self.long = long
+        
